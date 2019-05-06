@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
+import router from './plugins/router';
 import './plugins/plugins';
 import './style.styl';
 import store from './vuex/store';
+import './js/filter';
 
 Vue.config.productionTip = false;
 

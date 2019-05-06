@@ -5,6 +5,7 @@
     infinite-scroll-disabled="busy"
     infinite-scroll-distance="100"
   >
+    <p class="tr time">{{time | formDate}}</p>
     <ul>
       <li class="mb5" v-for="(item, index) in results" :key="index">
         <a :href="item.url" target="view_window">
@@ -21,9 +22,7 @@
         </a>
       </li>
     </ul>
-    <div v-if="results.length === 0 && !showLoading" class="tc f_9">
-      暂无数据
-    </div>
+    <div v-if="results.length === 0 && !showLoading" class="tc f_9">暂无数据</div>
   </div>
 </template>
 
@@ -32,12 +31,15 @@ import api from '../api/api';
 
 export default {
   name: 'home',
-  created() {},
+  created() {
+    this.getTime();
+  },
   data() {
     return {
       results: [],
       index: 1,
       busy: false,
+      time: new Date().getTime(),
     };
   },
   methods: {
@@ -55,18 +57,27 @@ export default {
       this.getPic();
       this.index++;
     },
+    getTime() {
+      setInterval(() => {
+        this.time = new Date().getTime();
+      }, 1000);
+    },
   },
-  computed:{
-    showLoading(){
+  computed: {
+    showLoading() {
       return this.$store.state.loadingShow;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="stylus" scoped>
 .home
+  .time
+    line-height 30px
+    padding 0 10px
+
   ul
-    padding 10px
+    padding 0 10px 20px
 
     li
       width 100%

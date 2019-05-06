@@ -1,5 +1,5 @@
 import qs from 'qs';
-import $p from '../service';
+import $p from '../plugins/service';
 
 export default {
   getIndexPic(params) {

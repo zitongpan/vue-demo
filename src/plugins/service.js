@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Message } from 'element-ui';
-import Store from './vuex/store';
+import Store from '../vuex/store';
 
 const $p = axios.create({
   timeout: 10000,
