@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import ios from './views/ios.vue';
+import android from './views/android.vue';
 
 Vue.use(Router);
 
@@ -8,15 +10,27 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      redirect: '/home',
       component: Home,
     },
     {
+      path: '/home',
+      name: '前端',
+      component: Home,
+    },
+    {
+      path: '/ios',
+      name: 'ios',
+      component: ios,
+    },
+    {
+      path: '/android',
+      name: 'android',
+      component: android,
+    },
+    {
       path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      name: '今日推荐',
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
   ],

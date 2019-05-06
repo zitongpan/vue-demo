@@ -31,7 +31,7 @@
 import api from '../api/api';
 
 export default {
-  name: 'home',
+  name: 'ios',
   created() {},
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
     async getPic() {
       const {
         data: { results: data, error },
-      } = await api.getIndexPic(this.index);
+      } = await api.getAndroidPic(this.index);
       if (!error) {
         this.busy = false;
         this.results = this.results.concat(data);

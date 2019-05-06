@@ -1,20 +1,49 @@
 <template>
   <div id="app">
-    <my-header></my-header>
+    <my-header :menus="menus"/>
     <router-view/>
-    <my-footer></my-footer>
+    <loading v-show="loadingShow"/>
   </div>
 </template>
 <script>
 import myHeader from '@/components/header.vue';
-import myFooter from '@/components/footer.vue';
+import loading from '@/components/loading.vue';
+
 export default {
-  name:'app',
-  components:{
+  name: 'app',
+  components: {
     myHeader,
-    myFooter
-  }
-}
+    loading,
+  },
+  data() {
+    return {
+      menus: [
+        {
+          name: '前端',
+          path: '/home',
+        },
+        {
+          name: 'ios',
+          path: '/ios',
+        },
+        {
+          name: 'android',
+          path: '/android',
+        },
+        {
+          name: '今日推荐',
+          path: '/about',
+        },
+      ],
+    };
+  },
+  created() {},
+  computed: {
+    loadingShow() {
+      return this.$store.state.loadingShow;
+    },
+  },
+};
 </script>
 
 <style lang="stylus">
@@ -24,14 +53,15 @@ export default {
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  height 100vh
   min-width 320px
 
 #nav
   padding 30px
+
   a
     font-weight bold
     color #2c3e50
+
     &.router-link-exact-active
       color #42b983
 </style>
